@@ -1,5 +1,5 @@
 # Stage 1: Build the Flutter Web app
-FROM ubuntu:20.04 AS build-env
+FROM debian:latest AS build-env
 
 # Set non-interactive mode
 ENV DEBIAN_FRONTEND=noninteractive
@@ -23,8 +23,9 @@ ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PAT
 RUN git config --global --add safe.directory /usr/local/flutter
 
 # Enable web and warm up flutter
+RUN flutter config --no-analytics
 RUN flutter config --enable-web
-RUN flutter precache --web
+RUN flutter doctor
 
 # Copy project files
 WORKDIR /app
