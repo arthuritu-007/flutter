@@ -1,0 +1,15 @@
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+sdk/
+windows/
+test/
+.git/
+.gitignore
+.metadata
+README.md
+analysis_options.yaml
+Dockerfile
+.dockerignore
