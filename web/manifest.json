@@ -1,11 +1,11 @@
 {
-    "name": "jared_portfolio",
-    "short_name": "jared_portfolio",
+    "name": "Arturo Portfolio",
+    "short_name": "Arturo Portfolio",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#FFC1B6",
+    "theme_color": "#FFC1B6",
+    "description": "Portafolio de Arturo hecho con Flutter.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
