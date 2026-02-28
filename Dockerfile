@@ -1,6 +1,9 @@
 # Stage 1: Build the Flutter Web app
 FROM ubuntu:20.04 AS build-env
 
+# Set non-interactive mode
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     curl \
@@ -9,20 +12,25 @@ RUN apt-get update && apt-get install -y \
     xz-utils \
     zip \
     libglu1-mesa \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Flutter SDK
 RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter -b stable
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
-# Enable web
+# Mark flutter directory as safe for git
+RUN git config --global --add safe.directory /usr/local/flutter
+
+# Enable web and warm up flutter
 RUN flutter config --enable-web
+RUN flutter precache --web
 
 # Copy project files
 WORKDIR /app
 COPY . .
 
-# Build the project
+# Ensure dependencies are fetched correctly
 RUN flutter pub get
 RUN flutter build web --release
 
